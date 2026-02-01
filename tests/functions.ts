@@ -19,5 +19,5 @@ export async function loginWithSavingCookies (page: Page, LOGIN_URL:string, USER
       }
 
       await page.context().storageState({path: sessionPath});
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(500); // forced timeout to secure session storage!
 }

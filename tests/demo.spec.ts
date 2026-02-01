@@ -53,14 +53,12 @@ test.describe('demo', () => {
           console.log('Mením menu na EUR');
           await overMenu.click();
           await euro.click();
-          await page.waitForTimeout(500)
-          await expect(overMenu).toContainText('EUR €');
+          await expect(overMenu).toContainText('EUR €', { timeout: 500 });
         } else {
           console.log('Mením menu na CZK');
           await overMenu.click();
           await ceskaKoruna.click();
-          await page.waitForTimeout(500)
-          await expect(overMenu).toContainText('CZK Kč');
+          await expect(overMenu).toContainText('CZK Kč', { timeout: 500 });
         }
 
     });
