@@ -6,7 +6,7 @@ test('Autentifikácia užívateľa s uložením cookies', async ({ page }) => {
   await loginWithSavingCookies(page, LOGIN_URL, USER_NAME, USER_PASSWORD);
 });
 
-test.describe('Demo test suite: ', () => {
+test.describe('Demo Test Suite: ', () => {
   test.use({storageState: 'tests/.auth/session.json'})
 
     test('Overenie úspešne prihláseného uživateľa', async ({ page }) => {
@@ -97,7 +97,6 @@ test.describe('Demo test suite: ', () => {
 
         expect(stavPo).toBe(stavPred + 1);
     });
-
 
 });
 
