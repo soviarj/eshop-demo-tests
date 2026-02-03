@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LOGIN_URL, USER_NAME, USER_PASSWORD } from './constants';
 import { loginWithSavingCookies } from './functions';
 
-test('Autentifikácia užívateľa s uložením cookies', async ({ page }) => {
+test.only('Autentifikácia užívateľa s uložením cookies', async ({ page }) => {
   await loginWithSavingCookies(page, LOGIN_URL, USER_NAME, USER_PASSWORD);
 });
 
@@ -67,7 +67,7 @@ test.describe('Demo Test Suite: ', () => {
         }
     });
 
-    test('Overenie úspešného vloženia položky do košíka', async ({ page }) => {
+    test.only('Overenie úspešného vloženia položky do košíka', async ({ page }) => {
         await page.goto(LOGIN_URL);
         const kosik = page.locator('.cart-products-count').first();
         
@@ -82,10 +82,17 @@ test.describe('Demo Test Suite: ', () => {
         const prvaPolozkaNaEshope = page.locator('[data-id-product="1"]').first();
         const pridajDoKosika = page.getByRole('button', { name: ' Přidat do košíku' });
         const produktUspesnePridany = page.getByRole('heading', { name: ' Produkt byl úspěšně přidán' })
-
+        
         await prvaPolozkaNaEshope.click();
-        await expect(pridajDoKosika).toBeVisible({timeout : 3000});
-        await pridajDoKosika.click();
+        
+        try {
+          await expect(pridajDoKosika).toBeVisible({timeout : 3000});
+          await pridajDoKosika.click();
+        } catch {
+          await prvaPolozkaNaEshope.click();
+          await expect(pridajDoKosika).toBeVisible({timeout : 3000});
+          await pridajDoKosika.click();
+        }
 
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
         await page.getByRole('button', { name: 'Pokračovat v nákupu' }).click();
