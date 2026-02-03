@@ -91,7 +91,7 @@ test.describe('Demo Test Suite: ', () => {
         } catch {
           await prvaPolozkaNaEshope.click();
           await expect(pridajDoKosika).toBeVisible({timeout : 3000});
-          await pridajDoKosika.click();
+          await pridajDoKosika.click({force: true});
         }
 
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
