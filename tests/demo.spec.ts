@@ -84,11 +84,19 @@ test.describe('Demo Test Suite: ', () => {
         const produktUspesnePridany = page.getByRole('heading', { name: ' Produkt byl úspěšně přidán' })
         
         await prvaPolozkaNaEshope.click();
+        const image = page.locator('.js-qv-product-cover');
 
-        await expect(async () => {
-          await pridajDoKosika.click();
-          await expect(produktUspesnePridany).toBeVisible();
-        }).toPass({ timeout: 5000 });
+        await expect(image).toBeVisible();
+
+        await image.evaluate((img: HTMLImageElement) => {
+          if (img.complete) return;
+          return new Promise(resolve => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        });
+
+        await pridajDoKosika.click();
         
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
         await page.getByRole('button', { name: 'Pokračovat v nákupu' }).click();
