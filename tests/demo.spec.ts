@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LOGIN_URL, USER_NAME, USER_PASSWORD } from './constants';
 import { loginWithSavingCookies } from './functions';
 
-test.only('Autentifikácia užívateľa s uložením cookies', async ({ page }) => {
+test('Autentifikácia užívateľa s uložením cookies', async ({ page }) => {
   await loginWithSavingCookies(page, LOGIN_URL, USER_NAME, USER_PASSWORD);
 });
 
@@ -67,7 +67,7 @@ test.describe('Demo Test Suite: ', () => {
         }
     });
 
-    test.only('Overenie úspešného vloženia položky do košíka', async ({ page }) => {
+    test('Overenie úspešného vloženia položky do košíka', async ({ page }) => {
         await page.goto(LOGIN_URL);
         const kosik = page.locator('.cart-products-count').first();
         
@@ -84,7 +84,7 @@ test.describe('Demo Test Suite: ', () => {
         const produktUspesnePridany = page.getByRole('heading', { name: ' Produkt byl úspěšně přidán' })
         
         await prvaPolozkaNaEshope.click();
-        
+
         try {
           await expect(pridajDoKosika).toBeVisible({timeout : 3000});
           await pridajDoKosika.click();
