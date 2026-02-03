@@ -84,7 +84,7 @@ test.describe('Demo Test Suite: ', () => {
         const produktUspesnePridany = page.getByRole('heading', { name: ' Produkt byl úspěšně přidán' })
         
         await prvaPolozkaNaEshope.click();
-        const image = page.locator('.js-qv-product-cover');
+        const image = page.locator('.js-qv-product-cover').first();
 
         await image.waitFor({ state: 'attached' });
 
