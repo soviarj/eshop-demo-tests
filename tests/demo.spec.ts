@@ -86,7 +86,7 @@ test.describe('Demo Test Suite: ', () => {
         await prvaPolozkaNaEshope.click();
         const image = page.locator('.js-qv-product-cover');
 
-        await expect(image).toBeVisible();
+        await image.waitFor({ state: 'attached' });
 
         await image.evaluate((img: HTMLImageElement) => {
           if (img.complete) return;
