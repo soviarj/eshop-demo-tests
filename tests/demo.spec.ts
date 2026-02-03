@@ -85,15 +85,11 @@ test.describe('Demo Test Suite: ', () => {
         
         await prvaPolozkaNaEshope.click();
 
-        try {
-          await expect(pridajDoKosika).toBeVisible({timeout : 3000});
-          await pridajDoKosika.click();
-        } catch {
-          await prvaPolozkaNaEshope.click();
-          await expect(pridajDoKosika).toBeVisible({timeout : 3000});
-          await pridajDoKosika.click({force: true});
-        }
-
+        await Promise.all([
+          page.waitForLoadState('networkidle'),
+          await pridajDoKosika.click(),          
+        ]);
+        
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
         await page.getByRole('button', { name: 'Pokračovat v nákupu' }).click();
 
