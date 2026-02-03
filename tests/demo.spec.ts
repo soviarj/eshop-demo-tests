@@ -87,7 +87,7 @@ test.describe('Demo Test Suite: ', () => {
 
         await Promise.all([
           page.waitForLoadState('networkidle'),
-          await pridajDoKosika.click(),          
+          pridajDoKosika.click(),          
         ]);
         
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
