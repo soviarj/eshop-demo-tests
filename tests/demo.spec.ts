@@ -85,10 +85,8 @@ test.describe('Demo Test Suite: ', () => {
         
         await prvaPolozkaNaEshope.click();
 
-        await Promise.all([
-          page.waitForLoadState('networkidle'),
-          pridajDoKosika.click(),          
-        ]);
+        await expect(pridajDoKosika).toBeEnabled();
+        await pridajDoKosika.click();
         
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
         await page.getByRole('button', { name: 'Pokračovat v nákupu' }).click();
