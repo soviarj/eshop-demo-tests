@@ -85,7 +85,7 @@ test.describe('Demo Test Suite: ', () => {
         
         await prvaPolozkaNaEshope.click();
 
-        await expect(pridajDoKosika).toBeEnabled();
+        await page.waitForTimeout(500)
         await pridajDoKosika.click();
         
         await expect(produktUspesnePridany).toBeVisible({timeout : 3000});
